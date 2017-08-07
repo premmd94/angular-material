@@ -1,4 +1,6 @@
+import { STRING_TYPE } from '@angular/compiler/src/output/output_ast';
 import { Component } from '@angular/core';
+import { AngularFireDatabase, FirebaseListObservable,  } from 'angularfire2/database';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
+   items: FirebaseListObservable<any[]>;
+  constructor(db: AngularFireDatabase) {
+    this.items = db.list('/items');
+  }
+ 
 }
